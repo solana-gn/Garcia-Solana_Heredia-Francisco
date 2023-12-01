@@ -8,6 +8,7 @@ import com.backend.clinicaodontologica.dto.salida.odontologo.OdontologoSalidaDto
 import com.backend.clinicaodontologica.dto.salida.paciente.PacienteSalidaDto;
 import com.backend.clinicaodontologica.dto.salida.turno.TurnoSalidaDto;
 import com.backend.clinicaodontologica.exceptions.BadRequestException;
+import com.backend.clinicaodontologica.exceptions.ResourceNotFoundException;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest
@@ -55,4 +55,18 @@ public class TurnoServiceTest {
         assertNotNull(turnoGuardado);
     }
 
+    @Test
+    @Order(3)
+    public void eliminarTurno() throws ResourceNotFoundException, MethodArgumentNotValidException, BadRequestException {
+        PacienteEntradaDto pacienteEntradaDto = new PacienteEntradaDto("Juan", "Perez", 123456789, LocalDate.of(2023, 12, 24), new DomicilioEntradaDto("calle", 1234, "Localidad", "Provincia"));
+        PacienteSalidaDto pacienteSalidaDto = pacienteService.registrarPaciente(pacienteEntradaDto);
+        OdontologoEntradaDto odontologoEntradaDto = new OdontologoEntradaDto("Francisco", "Heredia", "123456");
+        OdontologoSalidaDto odontologoSalidaDto = odontologoService.guardarOdontologo(odontologoEntradaDto);
+        TurnoEntradaDto turnoEntradaDto = new TurnoEntradaDto(LocalDateTime.of(2023, 12, 16, 16, 25, 25), 1L, 1L);
+        TurnoSalidaDto turnoGuardado = turnoService.registrarTurno(turnoEntradaDto);
+
+        turnoService.eliminarTurno(1L);
+
+        assertThrows(ResourceNotFoundException.class, () -> turnoService.eliminarTurno(1L));
+    }
 }
