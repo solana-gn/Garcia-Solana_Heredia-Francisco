@@ -39,7 +39,6 @@ public class TurnoService implements ITurnoService {
     @Override
     public TurnoSalidaDto registrarTurno(TurnoEntradaDto turno) throws BadRequestException {
 
-
         OdontologoSalidaDto odontologo = odontologoService.buscarOdontologoPorId(turno.getOdontologo());
         PacienteSalidaDto paciente = pacienteService.buscarPacientePorId(turno.getPaciente());
 
@@ -50,7 +49,6 @@ public class TurnoService implements ITurnoService {
         } else if (paciente == null) {
             throw new BadRequestException("No se encuentra un paciente con el ID proporcionado.");
         }
-
 
         Turno turnoEntidad = modelMapper.map(turno, Turno.class);
         LOGGER.info("Entidad: " + JsonPrinter.toString(turnoEntidad));

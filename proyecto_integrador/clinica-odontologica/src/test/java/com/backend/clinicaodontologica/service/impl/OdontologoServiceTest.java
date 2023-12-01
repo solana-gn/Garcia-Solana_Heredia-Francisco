@@ -23,7 +23,6 @@ public class OdontologoServiceTest {
 
         OdontologoEntradaDto odontologoEntradaDto = new OdontologoEntradaDto("Juan", "Perez", "123456");
 
-
         OdontologoSalidaDto odontologoGuardado = odontologoService.guardarOdontologo(odontologoEntradaDto);
 
         assertNotNull(odontologoGuardado);
