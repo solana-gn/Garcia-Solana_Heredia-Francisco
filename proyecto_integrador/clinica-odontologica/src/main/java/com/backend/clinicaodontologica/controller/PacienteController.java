@@ -25,14 +25,11 @@ public class PacienteController {
         this.pacienteService = pacienteService;
     }
 
-    //POST
     @PostMapping("/registrar")
     public ResponseEntity<PacienteSalidaDto> registrarPaciente(@RequestBody @Valid PacienteEntradaDto paciente) throws MethodArgumentNotValidException {
         return new ResponseEntity<>(pacienteService.registrarPaciente(paciente), HttpStatus.CREATED);
     }
 
-
-    //GET
     @GetMapping("{id}")
     public ResponseEntity<PacienteSalidaDto> obtenerPacientePorId(@PathVariable Long id) {
         return new ResponseEntity<>(pacienteService.buscarPacientePorId(id), HttpStatus.OK);
@@ -43,13 +40,11 @@ public class PacienteController {
         return new ResponseEntity<>(pacienteService.listarPacientes(), HttpStatus.OK);
     }
 
-    //PUT
     @PutMapping("/actualizar")
     public PacienteSalidaDto actualizarPaciente(@RequestBody PacienteModificacionEntradaDto paciente) throws MethodArgumentNotValidException{
         return pacienteService.actualizarPaciente(paciente);
     }
 
-    //DELETE
     @DeleteMapping("eliminar/{id}")
     public ResponseEntity<?> eliminarPaciente(@PathVariable Long id) throws ResourceNotFoundException {
         pacienteService.eliminarPaciente(id);

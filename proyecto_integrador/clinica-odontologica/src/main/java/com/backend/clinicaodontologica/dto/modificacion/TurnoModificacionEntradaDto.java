@@ -1,7 +1,5 @@
 package com.backend.clinicaodontologica.dto.modificacion;
 
-import com.backend.clinicaodontologica.dto.entrada.odontologo.OdontologoEntradaDto;
-import com.backend.clinicaodontologica.dto.entrada.paciente.PacienteEntradaDto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

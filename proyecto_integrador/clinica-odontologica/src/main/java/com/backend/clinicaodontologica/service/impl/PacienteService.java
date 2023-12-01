@@ -27,7 +27,7 @@ public class PacienteService implements IPacienteService {
 
     private ModelMapper modelMapper;
 
-    @Autowired //no es necesario ponerlo
+    @Autowired
     public PacienteService(PacienteRepository pacienteRepository, ModelMapper modelMapper) {
         this.pacienteRepository = pacienteRepository;
         this.modelMapper = modelMapper;
@@ -90,7 +90,6 @@ public class PacienteService implements IPacienteService {
 
         } else {
             LOGGER.error("No fue posible actualizar el paciente porque no se encuentra en nuestra base de datos");
-            //lanzar excepcion correspondiente
         }
 
 
